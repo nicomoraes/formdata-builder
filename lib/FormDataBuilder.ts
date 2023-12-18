@@ -2,9 +2,11 @@ import { type BaseSchema, type Output, parse } from 'valibot';
 import { InvalidKey } from './errors';
 import type {
 	AnyObject,
+	ArrayType,
 	CommonOptions,
 	ElementType,
 	IFormDataBuilder,
+	KeysWithArrays,
 	KeysWithoutArrays,
 } from './types';
 
@@ -33,6 +35,31 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 		}
 
 		const value = this.formData.get(key as string) as ElementType<T[K]>;
+
+		const output = this.runOptions<typeof value, K, T[K]>(value, options);
+
+		this.internalData[key] = output;
+
+		return this;
+	}
+
+	array<K extends KeysWithArrays<T>>(
+		key: K,
+		options: CommonOptions<T, ArrayType<T[K]>, K> = {
+			required: false,
+		},
+	): this {
+		if (!options.required) {
+			if (!this.getFormDataKeys.includes(key as string)) {
+				return this;
+			}
+		} else {
+			if (!this.getFormDataKeys.includes(key as string)) {
+				throw new InvalidKey(key as string);
+			}
+		}
+
+		const value = this.formData.getAll(key as string) as ArrayType<T[K]>;
 
 		const output = this.runOptions<typeof value, K, T[K]>(value, options);
 

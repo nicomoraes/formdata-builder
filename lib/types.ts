@@ -8,6 +8,10 @@ export type AnyObject = {
 	[key: string]: unknown;
 };
 
+export type KeysWithArrays<T> = {
+	[K in keyof T]: T[K] extends unknown[] ? K : never;
+}[keyof T];
+
 /**
  * Extracts keys from a type that do not have array values.
  */
@@ -19,6 +23,21 @@ export type KeysWithoutArrays<T> = {
  * Represents the type of the element. If T is of type Blob, the resulting type is Blob; otherwise, it is string.
  */
 export type ElementType<T> = T extends Blob ? Blob : string;
+
+/**
+ * Checks if type T is an array. If yes, the resulting type is true; otherwise, it is false.
+ */
+export type IsArray<T> = T extends Array<infer U> ? true : false;
+
+/**
+ * If T is an array, returns an array of type Blob[] if the internal element is Blob,
+ * otherwise returns an array of strings. If T is not an array, the resulting type is never.
+ */
+export type ArrayType<T> = T extends (infer U)[]
+	? U extends Blob
+		? Blob[]
+		: string[]
+	: never;
 
 /**
  * Represents a common set of generic options that can be applied to specific types.
@@ -67,5 +86,22 @@ export interface IFormDataBuilder<T extends { [key: string]: unknown }> {
 	single<K extends KeysWithoutArrays<T>>(
 		key: K,
 		options?: CommonOptions<T, ElementType<T[K]>, K>,
+	): this;
+
+	/**
+	 * Retrieves an array value from the formData using the specified key, optionally processing the value based on provided options,
+	 * and stores the result in the internal data object.
+	 *
+	 * @param key - A key that must have more than one record in formData.
+	 * @param {Object} [options] - Options for execution.
+	 * @param {BaseSchema} [options.schema] - The schema to apply during data processing.
+	 * @param {Function} [options.transform] - A function to apply data transformation.
+	 * @param {boolean} [options.required] - Defines whether method execution should throw an error if the `key` is not in FormData.
+	 *
+	 * @returns {this} Returns the current instance for method chaining.
+	 */
+	array<K extends KeysWithArrays<T>>(
+		key: K,
+		options?: CommonOptions<T, ArrayType<T[K]>, K>,
 	): this;
 }
