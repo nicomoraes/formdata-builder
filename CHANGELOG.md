@@ -1,5 +1,12 @@
 
 
+## [0.3.0](https://github.com/nicomoraes/formdata-builder/compare/0.2.0...0.3.0) (2023-12-18)
+
+
+### Features
+
+* transfer method ([a7c6905](https://github.com/nicomoraes/formdata-builder/commit/a7c690523412fd4e1547281a1a1884e389c8a505))
+
 ## [0.2.0](https://github.com/nicomoraes/formdata-builder/compare/0.1.0...0.2.0) (2023-12-18)
 
 
