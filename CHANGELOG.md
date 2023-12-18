@@ -1,5 +1,12 @@
 
 
+## [0.4.0](https://github.com/nicomoraes/formdata-builder/compare/0.3.0...0.4.0) (2023-12-18)
+
+
+### Features
+
+* innerTransfer method ([c33f40c](https://github.com/nicomoraes/formdata-builder/commit/c33f40c632b953517ed6a7ba5054fe5b3297d01b))
+
 ## [0.3.0](https://github.com/nicomoraes/formdata-builder/compare/0.2.0...0.3.0) (2023-12-18)
 
 
