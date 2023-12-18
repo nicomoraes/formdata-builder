@@ -1,5 +1,12 @@
 
 
+## [0.2.0](https://github.com/nicomoraes/formdata-builder/compare/0.1.0...0.2.0) (2023-12-18)
+
+
+### Features
+
+* array method ([ad1da95](https://github.com/nicomoraes/formdata-builder/commit/ad1da9522cec67309c21f740939802a92bd3b336))
+
 ## 0.1.0 (2023-12-18)
 
 
