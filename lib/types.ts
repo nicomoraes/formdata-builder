@@ -104,4 +104,24 @@ export interface IFormDataBuilder<T extends { [key: string]: unknown }> {
 		key: K,
 		options?: CommonOptions<T, ArrayType<T[K]>, K>,
 	): this;
+
+	/**
+	 * Transfers a value from one key to another, optionally processing the value based on provided options,
+	 * and stores the result in the internal data object.
+	 *
+	 * @param {string} from - The key from which to transfer the value.
+	 * @param {string} to - The key to which the value should be transferred.
+	 * @param {Object} [options] - Options for execution.
+	 * @param {BaseSchema} [options.schema] - The schema to apply during data processing.
+	 * @param {Function} [options.transform] - A function to apply data transformation.
+	 * @param {boolean} [options.required] - Defines whether method execution should throw an error if the `from` is not in FormData.
+	 *
+	 * @returns {this} Returns the current instance for method chaining.
+	 *
+	 */
+	transfer<K extends keyof T, U extends keyof Omit<T, K>>(
+		from: K,
+		to: U,
+		options?: CommonOptions<T, ArrayType<T[K]> | ElementType<T[K]>, U>,
+	): this;
 }

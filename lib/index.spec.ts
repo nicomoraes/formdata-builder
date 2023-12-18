@@ -114,3 +114,57 @@ describe('FormDataBuilder array()', () => {
 		).toThrow(new InvalidKey('invalidKey'));
 	});
 });
+
+describe('FormDataBuilder transfer()', () => {
+	let formData: FormData;
+	let builder: FormDataBuilder<SchemaType>;
+
+	beforeEach(() => {
+		formData = new FormData();
+		formData.append('title', 'title');
+		formData.append('categories', 'Web');
+		formData.append('categories', 'React');
+	});
+
+	it('should transfer a transformed and validated data when using valid key', () => {
+		builder = createFormDataBuilder(formData);
+
+		const result = builder
+			.transfer('title', 'slug', {
+				transform: (value) => `modified-${value}`,
+				schema: string(),
+			})
+			.build();
+
+		expect(result).toEqual({
+			title: 'title',
+			slug: 'modified-title',
+			categories: ['Web', 'React'],
+		});
+	});
+
+	it('should skip transformation when encountering invalid and non-required key', () => {
+		builder = createFormDataBuilder(formData);
+
+		const result = builder
+			// @ts-expect-error
+			.transfer('invalidKey', 'slug')
+			.build();
+
+		expect(result).toEqual({
+			title: 'title',
+			categories: ['Web', 'React'],
+		});
+	});
+
+	it('should throw InvalidKey error when encountering invalid and required key', () => {
+		builder = createFormDataBuilder(formData);
+
+		expect(() =>
+			builder
+				// @ts-expect-error
+				.transfer('invalidKey', 'slug', { required: true })
+				.build(),
+		).toThrow(new InvalidKey('invalidKey'));
+	});
+});
