@@ -100,6 +100,32 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 		return this;
 	}
 
+	innerTransfer<K extends keyof T, U extends keyof Omit<T, K>>(
+		from: K,
+		to: U,
+		options: CommonOptions<T, T[K], U> = {
+			required: false,
+		},
+	): this {
+		if (!options.required) {
+			if (!this.getInternalDataKeys.includes(from as string)) {
+				return this;
+			}
+		} else {
+			if (!this.getInternalDataKeys.includes(from as string)) {
+				throw new InvalidKey(from as string);
+			}
+		}
+
+		const fromValue = this.internalData[from];
+
+		const output = this.runOptions<typeof fromValue, U, T[U]>(fromValue, options);
+
+		this.internalData[to] = output;
+
+		return this;
+	}
+
 	build<B extends BaseSchema | undefined>(
 		schema?: B,
 	): B extends BaseSchema ? Output<B> : T {

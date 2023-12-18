@@ -168,3 +168,67 @@ describe('FormDataBuilder transfer()', () => {
 		).toThrow(new InvalidKey('invalidKey'));
 	});
 });
+
+describe('FormDataBuilder innerTransfer()', () => {
+	let formData: FormData;
+	let builder: FormDataBuilder<SchemaType>;
+
+	beforeEach(() => {
+		formData = new FormData();
+		formData.append('title', 'title');
+		formData.append('categories', 'Web');
+		formData.append('categories', 'React');
+	});
+
+	it('should transfer previously transformed when using a valid key', () => {
+		builder = createFormDataBuilder(formData);
+
+		const result = builder
+			.single('title', { transform: (v) => `modified ${v}`, schema: string() })
+			.innerTransfer('title', 'slug', {
+				transform: (value) => `${value}`.replaceAll(' ', '-'),
+				schema: string(),
+			})
+			.build();
+
+		expect(result).toEqual({
+			title: 'modified title',
+			slug: 'modified-title',
+			categories: ['Web', 'React'],
+		});
+	});
+
+	it('should skip transformation when encountering invalid and non-required key', () => {
+		builder = createFormDataBuilder(formData);
+
+		const result = builder
+			.single('title', { transform: (v) => `modified ${v}`, schema: string() })
+			// @ts-expect-error
+			.innerTransfer('invalidKey', 'slug', {
+				transform: (value) => `modified-${value}`,
+				schema: string(),
+			})
+			.build();
+
+		expect(result).toEqual({
+			title: 'modified title',
+			categories: ['Web', 'React'],
+		});
+	});
+
+	it('should throw InvalidKey error when encountering invalid and required key', () => {
+		builder = createFormDataBuilder(formData);
+
+		expect(() =>
+			builder
+				.single('title', { transform: (v) => `modified ${v}`, schema: string() })
+				// @ts-expect-error
+				.innerTransfer('invalidKey', 'slug', {
+					transform: (value) => `modified-${value}`,
+					schema: string(),
+					required: true,
+				})
+				.build(),
+		).toThrow(new InvalidKey('invalidKey'));
+	});
+});
