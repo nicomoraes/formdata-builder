@@ -3,6 +3,6 @@
 biome.json
 bun.lockb
 commitlint.config.js
-index.ts
+lib
 node_modules
 tsconfig.json
