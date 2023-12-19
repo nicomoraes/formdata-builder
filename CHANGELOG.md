@@ -1,5 +1,12 @@
 
 
+## [0.4.5](https://github.com/nicomoraes/formdata-builder/compare/0.4.4...0.4.5) (2023-12-19)
+
+
+### Chores
+
+* update husky pre-commit script ([d4dc5f5](https://github.com/nicomoraes/formdata-builder/commit/d4dc5f5a25b98f9ce283ee62da01f483e55e171a))
+
 ## [0.4.4](https://github.com/nicomoraes/formdata-builder/compare/0.4.3...0.4.4) (2023-12-19)
 
 
