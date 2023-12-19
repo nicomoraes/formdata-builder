@@ -175,7 +175,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 	}
 
 	private get getFormDataKeys() {
-		return Array.from(this.formData.keys());
+		return Array.from(this.formData.keys()).filter((k) => !k.startsWith('$ACTION'));
 	}
 
 	private get getInternalDataKeys() {

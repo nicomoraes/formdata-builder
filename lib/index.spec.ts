@@ -24,7 +24,7 @@ describe('FormDataBuilder single()', () => {
 	});
 
 	it('should return transformed and validated data when using valid key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			.single('title', { transform: (v) => `modified ${v}`, schema: string() })
@@ -37,7 +37,7 @@ describe('FormDataBuilder single()', () => {
 	});
 
 	it('should skip transformation when encountering invalid and non-required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			// @ts-expect-error
@@ -51,7 +51,7 @@ describe('FormDataBuilder single()', () => {
 	});
 
 	it('should throw InvalidKey error when encountering invalid and required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
 			builder
@@ -74,7 +74,7 @@ describe('FormDataBuilder array()', () => {
 	});
 
 	it('should return transformed and validated data when using valid key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			.array('categories', {
@@ -90,7 +90,7 @@ describe('FormDataBuilder array()', () => {
 	});
 
 	it('should skip transformation when encountering invalid and non-required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			// @ts-expect-error
@@ -104,7 +104,7 @@ describe('FormDataBuilder array()', () => {
 	});
 
 	it('should throw InvalidKey error when encountering invalid and required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
 			builder
@@ -127,7 +127,7 @@ describe('FormDataBuilder transfer()', () => {
 	});
 
 	it('should transfer a transformed and validated data when using valid key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			.transfer('title', 'slug', {
@@ -144,7 +144,7 @@ describe('FormDataBuilder transfer()', () => {
 	});
 
 	it('should skip transformation when encountering invalid and non-required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			// @ts-expect-error
@@ -158,7 +158,7 @@ describe('FormDataBuilder transfer()', () => {
 	});
 
 	it('should throw InvalidKey error when encountering invalid and required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
 			builder
@@ -181,7 +181,7 @@ describe('FormDataBuilder innerTransfer()', () => {
 	});
 
 	it('should transfer previously transformed when using a valid key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			.single('title', { transform: (v) => `modified ${v}`, schema: string() })
@@ -199,7 +199,7 @@ describe('FormDataBuilder innerTransfer()', () => {
 	});
 
 	it('should skip transformation when encountering invalid and non-required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		const result = builder
 			.single('title', { transform: (v) => `modified ${v}`, schema: string() })
@@ -217,7 +217,7 @@ describe('FormDataBuilder innerTransfer()', () => {
 	});
 
 	it('should throw InvalidKey error when encountering invalid and required key', () => {
-		builder = createFormDataBuilder(formData);
+		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
 			builder
@@ -230,5 +230,26 @@ describe('FormDataBuilder innerTransfer()', () => {
 				})
 				.build(),
 		).toThrow(new InvalidKey('invalidKey'));
+	});
+});
+
+describe('fixes', () => {
+	let formData: FormData;
+	let builder: FormDataBuilder<SchemaType>;
+
+	beforeEach(() => {
+		formData = new FormData();
+		formData.append('title', 'title');
+		formData.append('categories', 'Web');
+		formData.append('categories', 'React');
+		formData.append('$ACTION_1', '');
+	});
+
+	it('should ignore the "$ACTION" entry within FormData', () => {
+		builder = createFormDataBuilder<SchemaType>(formData);
+		expect(builder.build(schema)).toEqual({
+			title: 'title',
+			categories: ['Web', 'React'],
+		});
 	});
 });
