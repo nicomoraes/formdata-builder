@@ -1,84 +1,105 @@
 {
-  "name": "formdata-builder",
-  "module": "lib/index.ts",
-  "type": "module",
-  "scripts": {
-    "release": "release-it",
-    "prepare": "husky install"
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release v${version}"
-    },
-    "github": {
-      "release": true
-    },
-    "npm": {
-      "publish": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "infile": "CHANGELOG.md",
-        "preset": {
-          "name": "conventionalcommits",
-          "types": [
-            {
-              "type": "feat",
-              "section": "Features"
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes"
-            },
-            {
-              "type": "chore",
-              "section": "Chores"
-            },
-            {
-              "type": "docs",
-              "section": "Documentation"
-            },
-            {
-              "type": "style",
-              "section": "Styles"
-            },
-            {
-              "type": "test",
-              "section": "Tests"
-            },
-            {
-              "type": "perf",
-              "section": "Performance Improvements"
-            },
-            {
-              "type": "refactor",
-              "section": "Code Refactoring"
-            },
-            {
-              "type": "ci",
-              "section": "Continuous Integration"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.4.1",
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@release-it/conventional-changelog": "^8.0.1",
-    "bun-types": "latest",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.2.0",
-    "release-it": "^17.0.1"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0",
-    "valibot": "^0.24.1"
-  },
-  "dependencies": {
-    "valibot": "^0.24.1"
-  },
-  "version": "0.4.1"
+	"name": "formdata-builder",
+	"license": "MIT",
+	"keywords": [
+		"typescript",
+		"formdata",
+		"form",
+		"type safety",
+		"valibot",
+		"server actions"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nicomoraes/formdata-builder.git"
+	},
+	"author": {
+		"name": "Nicolas Moraes",
+		"url": "https://github.com/nicomoraes"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsup ./lib/index.ts --dts --format cjs,esm",
+		"release": "release-it",
+		"prepare": "husky install"
+	},
+	"release-it": {
+		"git": {
+			"commitMessage": "chore: release v${version}"
+		},
+		"github": {
+			"release": true
+		},
+		"npm": {
+			"publish": false
+		},
+		"plugins": {
+			"@release-it/conventional-changelog": {
+				"infile": "CHANGELOG.md",
+				"preset": {
+					"name": "conventionalcommits",
+					"types": [
+						{
+							"type": "feat",
+							"section": "Features"
+						},
+						{
+							"type": "fix",
+							"section": "Bug Fixes"
+						},
+						{
+							"type": "chore",
+							"section": "Chores"
+						},
+						{
+							"type": "docs",
+							"section": "Documentation"
+						},
+						{
+							"type": "style",
+							"section": "Styles"
+						},
+						{
+							"type": "test",
+							"section": "Tests"
+						},
+						{
+							"type": "perf",
+							"section": "Performance Improvements"
+						},
+						{
+							"type": "refactor",
+							"section": "Code Refactoring"
+						},
+						{
+							"type": "ci",
+							"section": "Continuous Integration"
+						}
+					]
+				}
+			}
+		}
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.4.1",
+		"@commitlint/cli": "^18.4.3",
+		"@commitlint/config-conventional": "^18.4.3",
+		"@release-it/conventional-changelog": "^8.0.1",
+		"bun-types": "latest",
+		"husky": "^8.0.0",
+		"lint-staged": "^15.2.0",
+		"release-it": "^17.0.1",
+		"tsup": "^8.0.1"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0",
+		"valibot": "^0.24.1"
+	},
+	"dependencies": {
+		"valibot": "^0.24.1"
+	},
+	"version": "0.4.1"
 }

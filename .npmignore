@@ -1,5 +1,6 @@
 .gitignore
 .husky
+.lintstagedrc.mjs
 biome.json
 bun.lockb
 commitlint.config.js

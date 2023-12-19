@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'bun:test';
 import { type Input, array, object, optional, string } from 'valibot';
-import { createFormDataBuilder } from './';
 import { FormDataBuilder } from './FormDataBuilder';
 import { InvalidKey } from './errors';
+import { createFormDataBuilder } from './index';
 
 const schema = object({
 	title: string(),
