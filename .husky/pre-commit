@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 bunx lint-staged
+bun test
+bun run build
