@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/nicomoraes/formdata-builder/compare/0.4.1...0.4.2) (2023-12-19)
+
+
+### Chores
+
+* add build tool ([85c3ae2](https://github.com/nicomoraes/formdata-builder/commit/85c3ae2390794843a25f4ea914f88b4c16434e55))
+
 ## [0.4.1](https://github.com/nicomoraes/formdata-builder/compare/0.4.0...0.4.1) (2023-12-19)
 
 

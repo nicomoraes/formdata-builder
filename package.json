@@ -101,5 +101,5 @@
 	"dependencies": {
 		"valibot": "^0.24.1"
 	},
-	"version": "0.4.1"
+	"version": "0.4.2"
 }
