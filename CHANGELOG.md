@@ -1,5 +1,12 @@
 
 
+## [0.4.6](https://github.com/nicomoraes/formdata-builder/compare/0.4.5...0.4.6) (2023-12-19)
+
+
+### Bug Fixes
+
+* fixes an error where optional schema properties were not passing validation ([0fbe156](https://github.com/nicomoraes/formdata-builder/commit/0fbe156269565b06c6f45677df16fbbffb4f62cf))
+
 ## [0.4.5](https://github.com/nicomoraes/formdata-builder/compare/0.4.4...0.4.5) (2023-12-19)
 
 
