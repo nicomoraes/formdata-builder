@@ -74,6 +74,47 @@ const data = builder
   }
 */
 ```
+
+## Usage with Next.js Server Actions
+
+```tsx
+import { createFormDataBuilder } from 'formdata-builder';
+import { Input, object, string } from 'valibot';
+
+// Your utility function
+import { slugify } from './utils'
+
+
+// valibot schema
+const schema = object({
+  title: string(),
+  slug: string(),
+});
+
+// Infer schema type
+type SchemaType = Input<typeof schema>;
+
+// Server Component
+export default function Page() {
+  // Server Action
+  async function create(formData: FormData) {
+    'use server'
+    const builder = createFormDataBuilder<SchemaType>(formData);
+
+    const data = builder
+      .transfer('title', 'slug', { transform: slugify })
+      .build(schema);
+    // ...
+  }
+ 
+  return (
+     <form action={create}>
+      <input name="title" id="title" placeholder="Enter a title" />
+      <button type="submit">Submit</button>
+     </form>
+  )
+}
+```
 ## Methods
 
 All transformation methods (array, innerTransfer, single and transfer) have options, which represent an optional object that contains the following properties:
