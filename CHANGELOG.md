@@ -1,5 +1,12 @@
 
 
+## [0.4.1](https://github.com/nicomoraes/formdata-builder/compare/0.4.0...0.4.1) (2023-12-19)
+
+
+### Documentation
+
+* update readme ([f85de9e](https://github.com/nicomoraes/formdata-builder/commit/f85de9e9405d53baf4617402ed3e5693cebef96c))
+
 ## [0.4.0](https://github.com/nicomoraes/formdata-builder/compare/0.3.0...0.4.0) (2023-12-18)
 
 
