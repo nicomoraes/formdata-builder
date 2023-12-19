@@ -1,5 +1,12 @@
 
 
+## [0.4.4](https://github.com/nicomoraes/formdata-builder/compare/0.4.3...0.4.4) (2023-12-19)
+
+
+### Documentation
+
+* adds an example of usage with Next.js Server Actions ([da39ac8](https://github.com/nicomoraes/formdata-builder/commit/da39ac898a6c6b9a58ccf9cfc405acd5678e899e))
+
 ## [0.4.3](https://github.com/nicomoraes/formdata-builder/compare/0.4.2...0.4.3) (2023-12-19)
 
 
