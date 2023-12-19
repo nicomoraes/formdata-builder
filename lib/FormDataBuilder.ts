@@ -149,6 +149,16 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 			}
 		}
 
+		for (const key in this.internalData) {
+			if (
+				this.internalData[key] === '' ||
+				this.internalData[key] === null ||
+				this.internalData[key] === undefined
+			) {
+				delete this.internalData[key];
+			}
+		}
+
 		if (schema) {
 			return parse(schema, this.internalData);
 		}

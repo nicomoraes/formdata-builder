@@ -243,11 +243,40 @@ describe('fixes', () => {
 		formData.append('categories', 'Web');
 		formData.append('categories', 'React');
 		formData.append('$ACTION_1', '');
+		formData.append('$vasco', '');
 	});
 
 	it('should ignore the "$ACTION" entry within FormData', () => {
 		builder = createFormDataBuilder<SchemaType>(formData);
 		expect(builder.build(schema)).toEqual({
+			title: 'title',
+			categories: ['Web', 'React'],
+		});
+	});
+
+	it('should validate when optional properties are not present', () => {
+		builder = createFormDataBuilder<SchemaType>(formData);
+		expect(
+			builder
+				// @ts-expect-error
+				.transfer('title', 'slug', { transform: () => null })
+				.build(schema),
+		).toEqual({
+			title: 'title',
+			categories: ['Web', 'React'],
+		});
+		expect(
+			builder.transfer('title', 'slug', { transform: () => '' }).build(schema),
+		).toEqual({
+			title: 'title',
+			categories: ['Web', 'React'],
+		});
+		expect(
+			builder
+				// @ts-expect-error
+				.transfer('title', 'slug', { transform: () => undefined })
+				.build(schema),
+		).toEqual({
 			title: 'title',
 			categories: ['Web', 'React'],
 		});
