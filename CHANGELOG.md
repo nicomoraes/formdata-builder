@@ -1,5 +1,12 @@
 
 
+## [0.4.3](https://github.com/nicomoraes/formdata-builder/compare/0.4.2...0.4.3) (2023-12-19)
+
+
+### Bug Fixes
+
+* resolve error in build method within server actions when using a schema ([003a91e](https://github.com/nicomoraes/formdata-builder/commit/003a91e56982914d736481d1d8829ba2c317242f))
+
 ## [0.4.2](https://github.com/nicomoraes/formdata-builder/compare/0.4.1...0.4.2) (2023-12-19)
 
 
