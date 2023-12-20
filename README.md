@@ -1,6 +1,6 @@
 # formdata-builder
 
-A TypeScript utility class for constructing type-safe data from `formData`, designed for integration with Valibot.
+A TypeScript utility class for constructing type-safe data from `FormData`, designed for integration with Valibot.
 
 ## Installation
 
@@ -248,7 +248,7 @@ The `build()` method will return the transformed data and those that were not tr
 // Without schema
 const data = builder.build();
 
-// Wtih schema
+// With schema
 const data = builder.build(schema);
 ```
 
