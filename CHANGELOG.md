@@ -1,5 +1,12 @@
 
 
+## [0.4.8](https://github.com/nicomoraes/formdata-builder/compare/0.4.7...0.4.8) (2024-02-21)
+
+
+### Chores
+
+* downgrade valibot to version 0.24.1 ([396845c](https://github.com/nicomoraes/formdata-builder/commit/396845c37d855ca8bd5694659e291b5eecfb4c73))
+
 ## [0.4.7](https://github.com/nicomoraes/formdata-builder/compare/0.4.6...0.4.7) (2024-02-21)
 
 
