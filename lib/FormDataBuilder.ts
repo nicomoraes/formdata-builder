@@ -1,5 +1,5 @@
 import { type BaseSchema, type Output, parse } from 'valibot';
-import { InvalidKey } from './errors';
+import { FormDataKeyNotFoundError, TransformedKeyNotFoundError } from './errors';
 import type {
 	AnyObject,
 	ArrayType,
@@ -30,7 +30,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 			}
 		} else {
 			if (!this.getFormDataKeys.includes(key as string)) {
-				throw new InvalidKey(key as string);
+				throw new FormDataKeyNotFoundError(key as string);
 			}
 		}
 
@@ -55,7 +55,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 			}
 		} else {
 			if (!this.getFormDataKeys.includes(key as string)) {
-				throw new InvalidKey(key as string);
+				throw new FormDataKeyNotFoundError(key as string);
 			}
 		}
 
@@ -81,7 +81,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 			}
 		} else {
 			if (!this.getFormDataKeys.includes(from as string)) {
-				throw new InvalidKey(from as string);
+				throw new FormDataKeyNotFoundError(from as string);
 			}
 		}
 
@@ -113,7 +113,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 			}
 		} else {
 			if (!this.getInternalDataKeys.includes(from as string)) {
-				throw new InvalidKey(from as string);
+				throw new TransformedKeyNotFoundError(from as string);
 			}
 		}
 

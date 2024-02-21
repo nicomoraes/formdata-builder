@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'bun:test';
 import { type Input, array, object, optional, string } from 'valibot';
 import { FormDataBuilder } from './FormDataBuilder';
-import { InvalidKey } from './errors';
+import { FormDataKeyNotFoundError, TransformedKeyNotFoundError } from './errors';
 import { createFormDataBuilder } from './index';
 
 const schema = object({
@@ -50,7 +50,7 @@ describe('FormDataBuilder single()', () => {
 		});
 	});
 
-	it('should throw InvalidKey error when encountering invalid and required key', () => {
+	it('should throw FormDataKeyNotFoundError error when encountering invalid and required key', () => {
 		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
@@ -58,7 +58,7 @@ describe('FormDataBuilder single()', () => {
 				// @ts-expect-error
 				.single('invalidKey', { required: true })
 				.build(),
-		).toThrow(new InvalidKey('invalidKey'));
+		).toThrow(new FormDataKeyNotFoundError('invalidKey'));
 	});
 });
 
@@ -103,7 +103,7 @@ describe('FormDataBuilder array()', () => {
 		});
 	});
 
-	it('should throw InvalidKey error when encountering invalid and required key', () => {
+	it('should throw FormDataKeyNotFoundError error when encountering invalid and required key', () => {
 		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
@@ -111,7 +111,7 @@ describe('FormDataBuilder array()', () => {
 				// @ts-expect-error
 				.array('invalidKey', { required: true })
 				.build(),
-		).toThrow(new InvalidKey('invalidKey'));
+		).toThrow(new FormDataKeyNotFoundError('invalidKey'));
 	});
 });
 
@@ -157,7 +157,7 @@ describe('FormDataBuilder transfer()', () => {
 		});
 	});
 
-	it('should throw InvalidKey error when encountering invalid and required key', () => {
+	it('should throw FormDataKeyNotFoundError error when encountering invalid and required key', () => {
 		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
@@ -165,7 +165,7 @@ describe('FormDataBuilder transfer()', () => {
 				// @ts-expect-error
 				.transfer('invalidKey', 'slug', { required: true })
 				.build(),
-		).toThrow(new InvalidKey('invalidKey'));
+		).toThrow(new FormDataKeyNotFoundError('invalidKey'));
 	});
 });
 
@@ -216,7 +216,7 @@ describe('FormDataBuilder innerTransfer()', () => {
 		});
 	});
 
-	it('should throw InvalidKey error when encountering invalid and required key', () => {
+	it('should throw TransformedKeyNotFoundError error when encountering invalid and required key', () => {
 		builder = createFormDataBuilder<SchemaType>(formData);
 
 		expect(() =>
@@ -229,7 +229,7 @@ describe('FormDataBuilder innerTransfer()', () => {
 					required: true,
 				})
 				.build(),
-		).toThrow(new InvalidKey('invalidKey'));
+		).toThrow(new TransformedKeyNotFoundError('invalidKey'));
 	});
 });
 
