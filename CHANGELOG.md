@@ -1,5 +1,17 @@
 
 
+## [0.4.7](https://github.com/nicomoraes/formdata-builder/compare/0.4.6...0.4.7) (2024-02-21)
+
+
+### Chores
+
+* update package.json ([ad864c8](https://github.com/nicomoraes/formdata-builder/commit/ad864c82c61cfe245d2c5948f26b5447246152af))
+
+
+### Code Refactoring
+
+* split custom errors into two distinct classes for clearer context ([4ec7cc9](https://github.com/nicomoraes/formdata-builder/commit/4ec7cc915f1828981221f84309f8e7c0bc6af5d7))
+
 ## [0.4.6](https://github.com/nicomoraes/formdata-builder/compare/0.4.5...0.4.6) (2023-12-19)
 
 
