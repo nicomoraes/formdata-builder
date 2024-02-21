@@ -88,18 +88,15 @@
 		"@commitlint/cli": "^18.4.3",
 		"@commitlint/config-conventional": "^18.4.3",
 		"@release-it/conventional-changelog": "^8.0.1",
-		"bun-types": "latest",
+		"@types/bun": "^1.0.6",
 		"husky": "^8.0.0",
 		"lint-staged": "^15.2.0",
 		"release-it": "^17.0.1",
-		"tsup": "^8.0.1"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0",
-		"valibot": "^0.24.1"
+		"tsup": "^8.0.1",
+		"typescript": "^5.0.2"
 	},
 	"dependencies": {
-		"valibot": "^0.24.1"
+		"valibot": "^0.29"
 	},
 	"version": "0.4.6"
 }

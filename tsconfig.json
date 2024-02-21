@@ -6,7 +6,6 @@
 		"declaration": true,
 		"downlevelIteration": true,
 		"forceConsistentCasingInFileNames": true,
-		"jsx": "react-jsx",
 		"lib": ["ES2022"],
 		"module": "ESNext",
 		"moduleDetection": "force",
@@ -17,7 +16,6 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "ESNext",
-		"types": ["bun-types"],
 		"verbatimModuleSyntax": true
 	}
 }
