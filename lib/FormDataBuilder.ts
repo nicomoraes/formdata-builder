@@ -126,7 +126,7 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 		return this;
 	}
 
-	build<B extends BaseSchema | undefined>(
+	build<B extends BaseSchema | undefined = undefined>(
 		schema?: B,
 	): B extends BaseSchema ? Output<B> : T {
 		const dataKeys = this.getInternalDataKeys;
