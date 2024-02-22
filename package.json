@@ -96,7 +96,7 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "valibot": "0.24.1"
+    "valibot": "0.29"
   },
   "version": "0.4.8"
 }
