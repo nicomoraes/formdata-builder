@@ -1,5 +1,17 @@
 
 
+## [0.4.9](https://github.com/nicomoraes/formdata-builder/compare/0.4.8...0.4.9) (2024-02-22)
+
+
+### Bug Fixes
+
+* fixes the return type of the build method when without schema ([b2e4caf](https://github.com/nicomoraes/formdata-builder/commit/b2e4cafcbd6f07e963c8606c1789c8232c6ba331))
+
+
+### Chores
+
+* update valibot version to 0.29 ([aaa7dd6](https://github.com/nicomoraes/formdata-builder/commit/aaa7dd6892046c6d1ac20dc345bda65ffaf702f3))
+
 ## [0.4.8](https://github.com/nicomoraes/formdata-builder/compare/0.4.7...0.4.8) (2024-02-21)
 
 
