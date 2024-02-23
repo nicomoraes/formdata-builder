@@ -192,3 +192,5 @@ export class FormDataBuilder<T extends AnyObject> implements IFormDataBuilder<T>
 		return Object.keys(this.internalData);
 	}
 }
+
+export type FormDataBuilderType = typeof FormDataBuilder;
