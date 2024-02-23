@@ -2,6 +2,10 @@
 
 A TypeScript utility class for constructing type-safe data from `FormData`, designed for integration with Valibot.
 
+## Requirements
+
+- Valibot 0.24.1 or later
+
 ## Installation
 
 npm:
@@ -52,7 +56,7 @@ formData.append('frameworks', 'Svelte');
 // Create a builder instance
 const builder = createFormDataBuilder<SchemaType>(formData);
 
-const data = builder
+const result = builder
   // Transferring and transforming the value from 'title' to 'slug'
   .transfer('title', 'slug', { 
     // Apply transformations
@@ -101,7 +105,7 @@ export default function Page() {
     'use server'
     const builder = createFormDataBuilder<SchemaType>(formData);
 
-    const data = builder
+    const result = builder
       .transfer('title', 'slug', { transform: slugify })
       .build(schema);
     // ...
@@ -146,7 +150,7 @@ const result = builder
   })
   .build();
 
-// result = { title: "new Lorem Ipsum" }
+// result => { title: "new Lorem Ipsum" }
 ```
 
 ### array(key, { transform?, schema?, required? })
@@ -176,7 +180,7 @@ const result = builder
   })
   .build();
 
-// result = { categories: ["modified Next.js", "modified Svelte"]  }
+// result => { categories: ["modified Next.js", "modified Svelte"]  }
 ```
 
 ### transfer(from, to, { transform?, schema?, required? })
@@ -199,14 +203,14 @@ type SchemaType = Input<typeof schema>;
 const builder = createFormDataBuilder<SchemaType>(formData);
 
 
-const data = builder
+const result = builder
   .transfer('title', 'slug', { 
     transform: (value) => slugify(value),
     schema: string()
   })
   .build();
 
-// => {title: 'Lorem Ipsum', slug: 'lorem-ipsum'}
+// result => {title: 'Lorem Ipsum', slug: 'lorem-ipsum'}
 ```
 
 ### innerTransfer(from, to, { transform?, schema?, required? })
@@ -228,7 +232,7 @@ type SchemaType = Input<typeof schema>;
 
 const builder = createFormDataBuilder<SchemaType>(formData);
 
-const data = builder
+const result = builder
   single('title', {
     transform: (value) => `Modified ${value}`
   })
@@ -238,7 +242,7 @@ const data = builder
   })
   .build();
 
-// => {title: 'Modified Lorem Ipsum', slug: 'modified-lorem-ipsum'}
+// result => {title: 'Modified Lorem Ipsum', slug: 'modified-lorem-ipsum'}
 ```
 
 ### build(schema?)
@@ -246,10 +250,10 @@ const data = builder
 The `build()` method will return the transformed data and those that were not transformed into a single object.
 ```typescript
 // Without schema
-const data = builder.build();
+const result = builder.build();
 
 // With schema
-const data = builder.build(schema);
+const result = builder.build(schema);
 ```
 
 ## Contributing
