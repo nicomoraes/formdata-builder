@@ -1,5 +1,12 @@
 
 
+## [0.4.10](https://github.com/nicomoraes/formdata-builder/compare/0.4.9...0.4.10) (2024-02-23)
+
+
+### Code Refactoring
+
+* add type export from FormDataBuilder class ([41d592d](https://github.com/nicomoraes/formdata-builder/commit/41d592dbe33e0361de9b54983b0df39fe7eb9e4d))
+
 ## [0.4.9](https://github.com/nicomoraes/formdata-builder/compare/0.4.8...0.4.9) (2024-02-22)
 
 
